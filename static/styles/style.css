@@ -31,6 +31,8 @@ html {
     width: 200px;
 }
 
+
+/* USER INFO */
 .userInfo {
     margin-top: -50px;
     font-size: 30px;
@@ -43,10 +45,12 @@ html {
 
 .seatNumber {}
 
+/* USER'S INTERESTS */
 .interests {
     font-size: 20px;
 }
 
+/* edit interest icon */
 .interests i {
     padding-left: 30px;
 }
@@ -70,6 +74,8 @@ html {
     font-size: 15px;
 }
 
+
+/* MIDDLE SECTION */
 .midSection {
     margin-top: 5%;
 }
@@ -84,6 +90,8 @@ html {
     font-weight: bold;
 }
 
+
+/* CARD STYLES */
 .card {
     text-align: center;
     font-size: 25px;
@@ -91,7 +99,7 @@ html {
 }
 
 .card h4 {
-    padding-left: 2%;
+    padding-left: 20px;
 }
 
 .toggleOn {
@@ -100,10 +108,18 @@ html {
     position: absolute;
 }
 
+.toggleOn:hover {
+    transform: scale(1.05);
+}
+
 .toggleOff {
     color: var(--AA-red);
-    padding-left: 70%;
+    margin-left: 70%;
     position: absolute;
+}
+
+.toggleOff:hover {
+    transform: scale(1.05);
 }
 
 .requestsCount {
@@ -205,5 +221,5 @@ html {
 .footer {
     position: absolute;
     width: 100%;
-    margin-left: 12%;
+    text-align: center;
 }
