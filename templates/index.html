@@ -31,6 +31,7 @@
         <div class="interests">
             <strong>Interests:&nbsp</strong>{{interests}}
             <i class="far fa-edit" @click="interestDialog = true"></i>
+            <a href="/logout"><i class="fas fa-sign-out-alt fa-2x"></i></a>
         </div>
 
         <div class="midSection">
@@ -107,7 +108,9 @@
                 <v-flex sm12 offset-sm0 v-for="S in D" class="seatInner">
                     <v-card-title>
                         <div class="seats" v-for="seat in S">
-                            <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)">{{seat.id}}</i>
+                            <!-- <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"></i> -->
+                            <div class="individualSeat" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"><span
+                                    class="seatID">{{seat.seatNumber}}</span></div>
                         </div>
                     </v-card-title>
                 </v-flex>

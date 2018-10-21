@@ -7,6 +7,8 @@
     --AA-green: #00b989;
     --AA-red: #c30019;
     --AA-yellow: #d1d532;
+    --AA-gray: #9da6ab;
+    --AA-orange: rgb(241, 165, 50);
 }
 
 html {
@@ -47,6 +49,11 @@ html {
 
 .interests i {
     padding-left: 30px;
+}
+
+.interests a {
+    color: black;
+    padding-left: 25%;
 }
 
 .interests i:hover {
@@ -101,6 +108,10 @@ html {
     margin-left: 10%;
 }
 
+.seatCard {
+    /* width: 100%; */
+}
+
 .seatSection {
     margin-top: 40px;
 }
@@ -113,24 +124,42 @@ html {
     padding-left: 20px;
 }
 
+.individualSeat {
+    /* padding-left: 10px; */
+    margin: 2px;
+    padding: 5px;
+    border: solid 2px black;
+    border-radius: 10%;
+    height: 50px;
+    width: 50px;
+}
+
+.seatID {
+    font-size: 20px;
+}
+
 .classR {
-    color: var(--AA-red);
+    background-color: var(--AA-red);
 }
 
 .classB {
-    color: var(--AA-light-blue);
+    background-color: var(--AA-light-blue);
 }
 
 .classE {
-    color: gray;
+    background-color: var(--AA-gray);
 }
 
 .classG {
-    color: var(--AA-green);
+    background-color: var(--AA-green);
 }
 
 .classY {
-    color: var(--AA-yellow);
+    background-color: var(--AA-yellow);
+}
+
+.classP {
+    background-color: var(--AA-orange);
 }
 
 .btn1 {

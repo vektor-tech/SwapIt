@@ -2,7 +2,6 @@ new Vue({
     el: '#app',
     data() {
         return {
-            i: 0,
             check: 0,
             offerToggle: true,
             requestsCount: 2,
@@ -15,33 +14,33 @@ new Vue({
             seats: [
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "1A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "1B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "1C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "1D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "1E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "1F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -50,33 +49,33 @@ new Vue({
                 ],
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "2A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "2B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "2C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "2D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "2E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "2F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -85,33 +84,33 @@ new Vue({
                 ],
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "3A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "3B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "3C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "3D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "3E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "3F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -120,33 +119,33 @@ new Vue({
                 ],
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "4A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "4B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "4C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "4D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "4E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "4F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -155,33 +154,33 @@ new Vue({
                 ],
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "5A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "5B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "5C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "5D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "5E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "5F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -190,33 +189,33 @@ new Vue({
                 ],
                 [
                     [{
-                            "seatNumber": "A1",
+                            "seatNumber": "6A",
                             "seatStatus": "R",
                             "interests": "Cycling"
                         },
                         {
-                            "seatNumber": "A2",
+                            "seatNumber": "6B",
                             "seatStatus": "G",
                             "interests": "Travelling"
                         },
                         {
-                            "seatNumber": "A3",
+                            "seatNumber": "6C",
                             "seatStatus": "B",
                             "interests": "Sports, Movies"
                         }
                     ],
                     [{
-                            "seatNumber": "B1",
+                            "seatNumber": "6D",
                             "seatStatus": "Y",
                             "interests": "Politics, Technology"
                         },
                         {
-                            "seatNumber": "B2",
+                            "seatNumber": "6E",
                             "seatStatus": "P",
                             "interests": "Sports, Music"
                         },
                         {
-                            "seatNumber": "B3",
+                            "seatNumber": "6F",
                             "seatStatus": "E",
                             "interests": "Politics, Travelling"
                         }
@@ -297,15 +296,10 @@ new Vue({
 
         }
     },
-    computed: {
-        newClass() {
-            this.i++;
-            return 'class' + this.seats[this.i];
-        }
-    },
+    computed: {},
     methods: {
         seatClicked(seat) {
-            if ((seat.class) == "g")
+            if ((seat.seatStatus) == "G")
                 this.check = 1;
         },
 
