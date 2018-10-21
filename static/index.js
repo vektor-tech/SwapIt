@@ -82,6 +82,216 @@ new Vue({
                         }
                     ]
 
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
+                ],
+                [
+                    [{
+                            "seatNumber": "A1",
+                            "seatStatus": "R",
+                            "interests": "Cycling"
+                        },
+                        {
+                            "seatNumber": "A2",
+                            "seatStatus": "G",
+                            "interests": "Travelling"
+                        },
+                        {
+                            "seatNumber": "A3",
+                            "seatStatus": "B",
+                            "interests": "Sports, Movies"
+                        }
+                    ],
+                    [{
+                            "seatNumber": "B1",
+                            "seatStatus": "Y",
+                            "interests": "Politics, Technology"
+                        },
+                        {
+                            "seatNumber": "B2",
+                            "seatStatus": "P",
+                            "interests": "Sports, Music"
+                        },
+                        {
+                            "seatNumber": "B3",
+                            "seatStatus": "E",
+                            "interests": "Politics, Travelling"
+                        }
+                    ]
+
                 ]
             ]
 

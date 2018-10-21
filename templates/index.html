@@ -104,7 +104,7 @@
         <div class="seatWrapper">
             <v-layout class="seatSection" v-for="D in seats">
                 <!-- LEFT SEATS -->
-                <v-flex sm12 offset-sm0 v-for="S in D" class="xc">
+                <v-flex sm12 offset-sm0 v-for="S in D" class="seatInner">
                     <v-card-title>
                         <div class="seats" v-for="seat in S">
                             <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)">{{seat.id}}</i>
@@ -112,6 +112,11 @@
                     </v-card-title>
                 </v-flex>
             </v-layout>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <a>&copy SeatExchange - Vektor Tech</a>
         </div>
     </div>
 </body>

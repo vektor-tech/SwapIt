@@ -96,15 +96,16 @@ html {
     padding: 5px 10px 5px 10px;
 }
 
+.seatWrapper {
+    margin-top: 90px;
+    margin-left: 10%;
+}
+
 .seatSection {
     margin-top: 40px;
 }
 
-.seatWrapper {
-    margin-top: 90px;
-}
-
-.xc {
+.seatInner {
     margin-top: -60px;
 }
 
@@ -146,4 +147,10 @@ html {
     color: var(--AA-dark-blue);
     border-color: var(--AA-dark-blue);
     transform: scale(1.05);
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    margin-left: 12%;
 }
