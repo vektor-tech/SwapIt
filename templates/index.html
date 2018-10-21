@@ -16,19 +16,25 @@
 
 <body>
     <div id="app">
+        <!-- LOGO -->
         <div class="title">
             <img src="https://files.slack.com/files-pri/T7M08EV7H-FDJLBUNBV/travel-blue-rgb-01.png" class="logo">
         </div>
 
+        <!-- USERNAME AND SEAT -->
         <div class="userInfo">
-            <span class="userName">{{userName}}{{check}}</span>
-            <span class="seatNumber">Seat {{seatNumber}}</span>
+            <span class="userName">{{userName}}&nbsp:{{check}}</span>
+            <span class="seatNumber">Seat {{userSeat}}</span>
         </div>
+
+        <!-- INTERESTS -->
         <div class="interests">
-            <strong>Interests:&nbsp</strong><span v-for="interest in interests">{{interest}},&nbsp</span>
+            <strong>Interests:&nbsp</strong>{{interests}}
+            <i class="far fa-edit" @click="interestDialog = true"></i>
         </div>
 
         <div class="midSection">
+            <!-- OFFER CARD -->
             <v-layout>
                 <v-flex sm12 offset-sm0>
                     <v-card class="card">
@@ -42,8 +48,9 @@
             </v-layout>
             <br>
 
+            <!-- REQUESTS CARD -->
             <v-layout>
-                <v-flex sm12 offset-sm0 @click="dialog = true">
+                <v-flex sm12 offset-sm0 @click="requestDialog = true">
                     <v-card class="card">
                         <v-card-title>
                             <h3>Requests</h3>
@@ -55,8 +62,29 @@
 
         </div>
 
+        <!-- INTEREST DIALOG -->
         <v-layout row justify-center>
-            <v-dialog v-model="dialog" max-width="290">
+            <v-dialog v-model="interestDialog" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Your Interests</v-card-title>
+                    <v-card-text class="innerInterestDialog">
+                        {{interests}}<br>
+                        Add:&nbsp<input type="text" v-model="newInterest" class="interestInput">
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="interestDialog = false; interestAdd()">
+                            Ok
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!-- REQUEST DIALOG-->
+        <v-layout row justify-center>
+            <v-dialog v-model="requestDialog" max-width="290">
                 <v-card>
                     <v-card-title class="headline">Requests</v-card-title>
                     <v-card-text>
@@ -64,37 +92,27 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="green darken-1" flat="flat" @click="dialog = false">
+                        <v-btn color="green darken-1" flat="flat" @click="requestDialog = false">
                             Ok
                         </v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
         </v-layout>
-        <br>
 
-        <v-layout class="seatSection">
-            <v-flex sm12 offset-sm0>
-                <v-card class="card">
+        <!-- SEAT DISPLAY -->
+        <div class="seatWrapper">
+            <v-layout class="seatSection" v-for="D in seats">
+                <!-- LEFT SEATS -->
+                <v-flex sm12 offset-sm0 v-for="S in D" class="xc">
                     <v-card-title>
-                        <div class="seats">
-                            <i v-for="seat in seats" class="fas fa-square fa-1x" :class="'class'+[seat.class]" @click="seatClicked(seat.class)">{{seat.id}}</i>
+                        <div class="seats" v-for="seat in S">
+                            <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)">{{seat.id}}</i>
                         </div>
                     </v-card-title>
-                </v-card>
-            </v-flex>
-
-            <v-flex sm12 offset-sm0>
-                <v-card class="card" v-for="i in 8">
-                    <v-card-title>
-                        <div class="seats" style="padding-left:30px">
-                            <i v-for="j in 3" class="fas fa-square fa-2x"></i>
-                        </div>
-                    </v-card-title>
-                </v-card>
-            </v-flex>
-
-        </v-layout>
+                </v-flex>
+            </v-layout>
+        </div>
     </div>
 </body>
 

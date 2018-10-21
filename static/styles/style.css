@@ -6,6 +6,7 @@
     --AA-dark-blue: #00467f;
     --AA-green: #00b989;
     --AA-red: #c30019;
+    --AA-yellow: #d1d532;
 }
 
 html {
@@ -42,6 +43,24 @@ html {
 
 .interests {
     font-size: 20px;
+}
+
+.interests i {
+    padding-left: 30px;
+}
+
+.interests i:hover {
+    transform: scale(1.1);
+}
+
+.interestInput {
+    border: solid 1px black;
+    margin-top: 5px;
+}
+
+.innerInterestDialog {
+    margin-top: -20px;
+    font-size: 15px;
 }
 
 .midSection {
@@ -81,22 +100,36 @@ html {
     margin-top: 40px;
 }
 
-.seats {}
+.seatWrapper {
+    margin-top: 90px;
+}
+
+.xc {
+    margin-top: -60px;
+}
 
 .seats i {
     padding-left: 20px;
 }
 
-.classr {
-    color: red;
+.classR {
+    color: var(--AA-red);
 }
 
-.classg {
-    color: green;
+.classB {
+    color: var(--AA-light-blue);
 }
 
-.classy {
-    color: yellow;
+.classE {
+    color: gray;
+}
+
+.classG {
+    color: var(--AA-green);
+}
+
+.classY {
+    color: var(--AA-yellow);
 }
 
 .btn1 {
