@@ -3,9 +3,12 @@ new Vue({
     data() {
         return {
             check: 0,
-            offerToggle: true, //Offer toggle switch status
-            requestsCount: 2, //total requests received by the user
+            loginSuccess: false,
+            loginToggle: true,
 
+            FORAPI: "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/seat-exchange-dqcnh/service/api/incoming_webhook/",
+
+            requestsCount: 2, //total requests received by the user
             userName: "FirstName LastName", //user's full name
             userSeat: "1A", //user's seat-number
             interests: "Travelling, Politics", //user's interest
@@ -13,6 +16,7 @@ new Vue({
             currentSelectedSeat: "",
 
             //DIALOG TOGGLES
+            offerToggle: true, //Offer toggle switch status
             requestDialog: false, //request modal toggle
             interestDialog: false, //interest modal toggle
             currentSelectedOfferToggle: false,
@@ -351,6 +355,27 @@ new Vue({
         interestAdd() {
             this.interests += this.newInterest;
             this.check = this.interests;
+        },
+
+        loginRequest: function () {
+            fetch(this.FORAPI + "/auth", {
+                    method: "post",
+                    body: JSON.stringify({
+                        ticket_num: this.ticketNum,
+                        last_name: this.lastName
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.ticketNum = "";
+                    this.lastName = "";
+                    this.loginSuccess = true;
+                })
+                .catch(err => console.error(err));
         }
     }
+
 });
