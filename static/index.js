@@ -2,20 +2,19 @@ new Vue({
     el: '#app',
     data() {
         return {
-            check: 0,
             loginSuccess: false,
             loginToggle: true,
 
-            ticketNum: 0,
+            ticketNum: "",
             lastName: "",
             userToken: "",
 
             FORAPI: "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/seat-exchange-dqcnh/service/api/incoming_webhook",
 
-            requestsCount: 2, //total requests received by the user
-            userName: "FirstName LastName", //user's full name
-            userSeat: "1A", //user's seat-number
-            interests: "Travelling, Politics", //user's interest
+            requestsCount: 0, //total requests received by the user
+            userName: "Loading..", //user's full name
+            userSeat: "N/A", //user's seat-number
+            interests: "", //user's interest
             newInterest: "", //to store new interest string
             currentSelectedSeat: "",
 
@@ -29,6 +28,8 @@ new Vue({
             notAvailableSeatToggle: false,
             seatRequestedByUserToggle: false,
             seatRequestedByOtherToggle: false,
+            notRegisteredSeatToggle: false,
+            loginErrorToggle: false,
 
             colorCodes: {
                 "B": "User's Current Seat",
@@ -327,10 +328,17 @@ new Vue({
     computed: {},
     mounted: {},
     methods: {
+        loginError() {
+            this.ticketNum = "";
+            this.lastName = "";
+            this.loginErrorToggle = true;
+        },
+
+        //function to handle seat clicks
         seatClicked(seat) {
             this.currentSelectedOffer = "";
             //for user's seat
-            if (((seat.status) == "B") && ((seat.seat_number) === this.userSeat)) {
+            if ((seat.status) == "B") {
                 this.currentSelectedSeat = seat.seat_number;
                 this.userSeatToggle = true;
             }
@@ -354,6 +362,11 @@ new Vue({
                 this.currentSelectedSeat = seat.seat_number;
                 this.seatRequestedByOtherToggle = true;
             }
+            //for not registered seats
+            else if ((seat.status) == "E") {
+                this.currentSelectedSeat = seat.seat_number;
+                this.notRegisteredSeatToggle = true;
+            }
         },
 
         // this function is called is interest is updated
@@ -376,11 +389,20 @@ new Vue({
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    this.ticketNum = "";
-                    this.lastName = "";
-                    this.loginSuccess = true;
-                    this.userToken = data.token.$oid;
-                    this.getSeats();
+                    console.log(data.success);
+
+                    if (data.success) {
+                        this.ticketNum = "";
+                        this.lastName = "";
+                        this.loginSuccess = true;
+                        this.userToken = data.token.$oid;
+                        this.loginSuccessToggle = true;
+                        this.getSeats();
+                    } else if (!data.success) {
+                        console.log("login error")
+                        this.loginError();
+                    }
+
                 })
                 .catch(err => console.error(err));
         },
@@ -397,10 +419,30 @@ new Vue({
                 .then(data => {
                     console.log(data);
                     this.seats = data;
+                    this.getUser();
                     console.log(this.seats);
                 })
                 .catch(err => console.error(err));
         },
+
+        getUser: function () {
+            console.log(this.userName);
+            fetch(this.FORAPI + "/user", {
+                    method: "post",
+                    body: JSON.stringify({
+                        token: this.userToken
+                    }),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    this.userName = data.name;
+                    this.userSeat = data.seat_number;
+                    this.interests = data.interests;
+                    console.log(this.userName);
+                })
+                .catch(err => console.error(err));
+        }
     }
 
 });

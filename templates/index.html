@@ -16,17 +16,22 @@
 
 <body>
     <div id="app">
+        <!-- LOGO -->
+        <div class="title">
+            <img src="https://files.slack.com/files-pri/T7M08EV7H-FDJLBUNBV/travel-blue-rgb-01.png" class="logo">
+        </div>
+
+        <!-- LOGIN AREA -->
         <div class="login" v-show="!loginSuccess">
             <!-- LOGIN MODAL -->
             <v-layout row justify-center>
-                <v-dialog v-model="loginToggle" max-width="290">
+                <v-dialog v-model="loginToggle" max-width="400">
                     <v-card>
-                        <v-card-title class="headline">LOGIN</v-card-title>
+
                         <v-card-text class="name-group">
+                            <v-card-title class="headline">LOGIN</v-card-title>
                             <input autofocus type="text" v-model="ticketNum" placeholder="Ticket Number">
                             <input autofocus type="text" v-model="lastName" placeholder="Last Name">
-                            {{ticketNum}}
-                            {{lastName}}
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -39,15 +44,34 @@
             </v-layout>
         </div>
 
-        <div class="main" v-show="loginSuccess">
-            <!-- LOGO -->
-            <div class="title">
-                <img src="https://files.slack.com/files-pri/T7M08EV7H-FDJLBUNBV/travel-blue-rgb-01.png" class="logo">
-            </div>
+        <div class="login" v-show="loginErrorToggle">
+            <!-- LOGIN ERROR MODAL -->
+            <v-layout row justify-center>
+                <v-dialog v-model="loginErrorToggle" max-width="400">
+                    <v-card>
+                        <v-card-text class="name-group">
+                            <v-card-title class="headline">LOGIN</v-card-title>
+                            <input autofocus type="text" v-model="ticketNum" placeholder="Ticket Number">
+                            <input autofocus type="text" v-model="lastName" placeholder="Last Name">
+                            <p style="color:red; padding-top:5px;">Ticken Number / LastName not found.</p>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="
+                                green darken-1" flat="flat" @click="loginErrorToggle = false; loginRequest()">
+                                LOGIN
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-layout>
+        </div>
 
+        <!-- MAIN AREA -->
+        <div class="main" v-show="loginSuccess">
             <!-- USERNAME AND SEAT -->
             <div class="userInfo">
-                <span class="userName">{{userName}}&nbsp:{{check}}</span>
+                <span class="userName">{{userName}}</span>
                 <span class="seatNumber">Seat {{userSeat}}</span>
             </div>
 
@@ -55,7 +79,7 @@
             <div class="interests">
                 <strong>Interests:&nbsp</strong>{{interests}}
                 <i class="far fa-edit" @click="interestDialog = true"></i>
-                <a href="/logout"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+                <a @click="loginSuccess=false;loginToggle=true"><i class="fas fa-sign-out-alt fa-2x"></i></a>
             </div>
 
             <div class="midSection">
@@ -232,6 +256,24 @@
                             <v-spacer></v-spacer>
                             <v-btn color="green darken-1" flat="flat" @click="seatRequestedByOtherToggle = false">
                                 Confirm Seat Exchange
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-layout>
+
+            <!--NOT REGISTERED SEAT TOGGLE-->
+            <v-layout row justify-center>
+                <v-dialog v-model="notRegisteredSeatToggle" max-width="290">
+                    <v-card>
+                        <v-card-title class="headline">Selected Seat: {{currentSelectedSeat}}</v-card-title>
+                        <v-card-text>
+                            This seat is not registered to any passenger.
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-1" flat="flat" @click="notRegisteredSeatToggle = false">
+                                OK
                             </v-btn>
                         </v-card-actions>
                     </v-card>
