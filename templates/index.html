@@ -5,15 +5,96 @@
         HackTX - 2018
     </title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
 </head>
 
 <body>
     <div id="app">
         <div class="title">
-            <img src="https://www.clipartmax.com/png/middle/141-1411793_delta-airlines-logo-transparent-american-airlines-company-logo.png"
-                class="logo">
+            <img src="https://files.slack.com/files-pri/T7M08EV7H-FDJLBUNBV/travel-blue-rgb-01.png" class="logo">
         </div>
+
+        <div class="userInfo">
+            <span class="userName">{{userName}}{{check}}</span>
+            <span class="seatNumber">Seat {{seatNumber}}</span>
+        </div>
+        <div class="interests">
+            <strong>Interests:&nbsp</strong><span v-for="interest in interests">{{interest}},&nbsp</span>
+        </div>
+
+        <div class="midSection">
+            <v-layout>
+                <v-flex sm12 offset-sm0>
+                    <v-card class="card">
+                        <v-card-title>
+                            <h3>Offer</h3>
+                            <div v-if="offerToggle" class="toggleOn"><i @click="offerToggle=false" class="fas fa-toggle-on fa-2x"></i></div>
+                            <div v-else class="toggleOff"><i @click="offerToggle=true" class="fas fa-toggle-off fa-2x"></i></div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+            <br>
+
+            <v-layout>
+                <v-flex sm12 offset-sm0 @click="dialog = true">
+                    <v-card class="card">
+                        <v-card-title>
+                            <h3>Requests</h3>
+                            <div class="requestsCount">{{requestsCount}}</div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+
+        </div>
+
+        <v-layout row justify-center>
+            <v-dialog v-model="dialog" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Requests</v-card-title>
+                    <v-card-text>
+                        here is the content
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="dialog = false">
+                            Ok
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+        <br>
+
+        <v-layout class="seatSection">
+            <v-flex sm12 offset-sm0>
+                <v-card class="card">
+                    <v-card-title>
+                        <div class="seats">
+                            <i v-for="seat in seats" class="fas fa-square fa-1x" :class="'class'+[seat.class]" @click="seatClicked(seat.class)">{{seat.id}}</i>
+                        </div>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+
+            <v-flex sm12 offset-sm0>
+                <v-card class="card" v-for="i in 8">
+                    <v-card-title>
+                        <div class="seats" style="padding-left:30px">
+                            <i v-for="j in 3" class="fas fa-square fa-2x"></i>
+                        </div>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+
+        </v-layout>
     </div>
 </body>
 

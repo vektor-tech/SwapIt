@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+:root {
+    --AA-blue: #0078d2;
+    --AA-light-blue: #4db4fa;
+    --AA-dark-blue: #00467f;
+    --AA-green: #00b989;
+    --AA-red: #c30019;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+    padding: 30px;
+}
+
+#app {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.title {
+    text-align: center;
+    margin-top: -80px;
+}
+
+.logo {
+    height: 200px;
+    width: 200px;
+}
+
+.userInfo {
+    margin-top: -50px;
+    font-size: 30px;
+    display: flex;
+}
+
+.userName {
+    flex: 1;
+}
+
+.seatNumber {}
+
+.interests {
+    font-size: 20px;
+}
+
+.midSection {
+    margin-top: 5%;
+}
+
+.card {
+    text-align: center;
+    font-size: 25px;
+    height: 80px;
+}
+
+.card h3 {
+    padding-left: 10%;
+}
+
+.toggleOn {
+    color: var(--AA-green);
+    margin-left: 70%;
+    position: absolute;
+}
+
+.toggleOff {
+    color: var(--AA-red);
+    padding-left: 70%;
+    position: absolute;
+}
+
+.requestsCount {
+    margin-left: 73%;
+    position: absolute;
+    border: solid 1px black;
+    padding: 5px 10px 5px 10px;
+}
+
+.seatSection {
+    margin-top: 40px;
+}
+
+.seats {}
+
+.seats i {
+    padding-left: 20px;
+}
+
+.classr {
+    color: red;
+}
+
+.classg {
+    color: green;
+}
+
+.classy {
+    color: yellow;
+}
+
+.btn1 {
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+    color: var(--AA-blue);
+    border: solid 1px var(--AA-blue);
+    border-radius: 5%;
+    margin-top: 10px;
+}
+
+.btn1:hover {
+    color: var(--AA-dark-blue);
+    border-color: var(--AA-dark-blue);
+    transform: scale(1.05);
+}
