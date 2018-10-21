@@ -74,14 +74,24 @@ html {
     margin-top: 5%;
 }
 
+.midSection a {
+    font-size: 15px;
+    margin-left: 45%;
+    color: var(--AA-dark-blue);
+}
+
+.midSection a:hover {
+    font-weight: bold;
+}
+
 .card {
     text-align: center;
     font-size: 25px;
     height: 80px;
 }
 
-.card h3 {
-    padding-left: 10%;
+.card h4 {
+    padding-left: 2%;
 }
 
 .toggleOn {
@@ -103,8 +113,18 @@ html {
     padding: 5px 10px 5px 10px;
 }
 
+.legendSeat {
+    border: solid 2px black;
+    border-radius: 10%;
+    /* height: 20px;
+    width: 20px; */
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-left: 20px;
+}
+
 .seatWrapper {
-    margin-top: 90px;
+    margin-top: 60px;
     margin-left: 10%;
 }
 
@@ -134,6 +154,10 @@ html {
     width: 50px;
 }
 
+.individualSeat:hover {
+    transform: scale(1.1);
+}
+
 .seatID {
     font-size: 20px;
 }
@@ -158,7 +182,7 @@ html {
     background-color: var(--AA-yellow);
 }
 
-.classP {
+.classO {
     background-color: var(--AA-orange);
 }
 

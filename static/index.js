@@ -3,19 +3,39 @@ new Vue({
     data() {
         return {
             check: 0,
-            offerToggle: true,
-            requestsCount: 2,
-            requestDialog: false,
-            interestDialog: false,
-            userName: "FirstName LastName",
-            userSeat: "A3",
-            interests: "Travelling, Politics",
-            newInterest: "",
+            offerToggle: true, //Offer toggle switch status
+            requestsCount: 2, //total requests received by the user
+
+            userName: "FirstName LastName", //user's full name
+            userSeat: "1A", //user's seat-number
+            interests: "Travelling, Politics", //user's interest
+            newInterest: "", //to store new interest string
+            currentSelectedSeat: "",
+
+            //DIALOG TOGGLES
+            requestDialog: false, //request modal toggle
+            interestDialog: false, //interest modal toggle
+            currentSelectedOfferToggle: false,
+            userSeatToggle: false,
+            legendToggle: false,
+            notAvailableSeatToggle: false,
+            seatRequestedByUserToggle: false,
+            seatRequestedByOtherToggle: false,
+
+            colorCodes: {
+                "B": "User's Current Seat",
+                "G": "Seats available for offer",
+                "R": "Seats NOT available for offer",
+                "Y": "Seat Requests received by the user",
+                "O": "Seats Requested by the User",
+                "E": "Unregistered Seats"
+            },
+
             seats: [
                 [
                     [{
                             "seatNumber": "1A",
-                            "seatStatus": "R",
+                            "seatStatus": "B",
                             "interests": "Cycling"
                         },
                         {
@@ -25,7 +45,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "1C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -36,7 +56,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "1E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -60,7 +80,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "2C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -71,7 +91,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "2E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -95,7 +115,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "3C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -106,7 +126,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "3E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -130,7 +150,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "4C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -141,7 +161,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "4E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -165,7 +185,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "5C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -176,7 +196,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "5E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -200,7 +220,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "6C",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -211,7 +231,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "6E",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -235,7 +255,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "A3",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -246,7 +266,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "B2",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -270,7 +290,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "A3",
-                            "seatStatus": "B",
+                            "seatStatus": "R",
                             "interests": "Sports, Movies"
                         }
                     ],
@@ -281,7 +301,7 @@ new Vue({
                         },
                         {
                             "seatNumber": "B2",
-                            "seatStatus": "P",
+                            "seatStatus": "O",
                             "interests": "Sports, Music"
                         },
                         {
@@ -299,8 +319,32 @@ new Vue({
     computed: {},
     methods: {
         seatClicked(seat) {
-            if ((seat.seatStatus) == "G")
-                this.check = 1;
+            this.currentSelectedOffer = "";
+            //for user's seat
+            if (((seat.seatStatus) == "B") && ((seat.seatNumber) === this.userSeat)) {
+                this.currentSelectedSeat = seat.seatNumber;
+                this.userSeatToggle = true;
+            }
+            //for offered seat
+            else if ((seat.seatStatus) == "G") {
+                this.currentSelectedSeat = seat.seatNumber;
+                this.currentSelectedOfferToggle = true;
+            }
+            //for not available seat
+            else if ((seat.seatStatus) == "R") {
+                this.currentSelectedSeat = seat.seatNumber;
+                this.notAvailableSeatToggle = true;
+            }
+            //for seats requested by the user
+            else if ((seat.seatStatus) == "O") {
+                this.currentSelectedSeat = seat.seatNumber;
+                this.seatRequestedByUserToggle = true;
+            }
+            //for seats requested by others
+            else if ((seat.seatStatus) == "Y") {
+                this.currentSelectedSeat = seat.seatNumber;
+                this.seatRequestedByOtherToggle = true;
+            }
         },
 
         // this function is called is interest is updated

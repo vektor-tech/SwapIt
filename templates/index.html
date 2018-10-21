@@ -40,7 +40,7 @@
                 <v-flex sm12 offset-sm0>
                     <v-card class="card">
                         <v-card-title>
-                            <h3>Offer</h3>
+                            <h4>Accept Offers</h4>
                             <div v-if="offerToggle" class="toggleOn"><i @click="offerToggle=false" class="fas fa-toggle-on fa-2x"></i></div>
                             <div v-else class="toggleOff"><i @click="offerToggle=true" class="fas fa-toggle-off fa-2x"></i></div>
                         </v-card-title>
@@ -54,15 +54,18 @@
                 <v-flex sm12 offset-sm0 @click="requestDialog = true">
                     <v-card class="card">
                         <v-card-title>
-                            <h3>Requests</h3>
+                            <h4>Requests</h4>
                             <div class="requestsCount">{{requestsCount}}</div>
                         </v-card-title>
                     </v-card>
                 </v-flex>
             </v-layout>
 
+            <a @click="legendToggle = true">Legend</a>
         </div>
 
+        <!-- MODALS -->
+        <!-- --- -->
         <!-- INTEREST DIALOG -->
         <v-layout row justify-center>
             <v-dialog v-model="interestDialog" max-width="290">
@@ -101,6 +104,116 @@
             </v-dialog>
         </v-layout>
 
+        <!-- LEGEND/COLOR-CODE DIALOG  -->
+        <v-layout row justify-center>
+            <v-dialog v-model="legendToggle" max-width="390">
+                <v-card>
+                    <v-card-title class="headline">Color Code</v-card-title>
+                    <v-card-text>
+                        <div v-for="(data,color) in colorCodes">
+                            <span class="legendSeat" :class="'class'+[color]"></span>&nbsp&nbsp{{data}}
+                        </div>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="legendToggle = false">
+                            Ok
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!--USER SEAT CLICK DIALOG-->
+        <v-layout row justify-center>
+            <v-dialog v-model="userSeatToggle" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Selected Seat: {{currentSelectedSeat}}</v-card-title>
+                    <v-card-text>
+                        This is your current registered seat.
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="userSeatToggle = false">
+                            OK
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!--CURRENT SELECTED OFFERED SEAT DIALOG-->
+        <v-layout row justify-center>
+            <v-dialog v-model="currentSelectedOfferToggle" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Offered Seat: {{currentSelectedSeat}}</v-card-title>
+                    <v-card-text>
+                        Click 'Send Request' to send the seat exchange request to this passenger.
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="currentSelectedOfferToggle = false">
+                            Send Request
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!--NOT AVAILABLE SEAT DIALOG-->
+        <v-layout row justify-center>
+            <v-dialog v-model="notAvailableSeatToggle" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Selected Seat: {{currentSelectedSeat}}</v-card-title>
+                    <v-card-text>
+                        Sorry, selected seat is not available for exchange.
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="notAvailableSeatToggle = false">
+                            OK
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!--SEAT REQUESTED BY THE USER DIALOG-->
+        <v-layout row justify-center>
+            <v-dialog v-model="seatRequestedByUserToggle" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Selected Seat: {{currentSelectedSeat}}</v-card-title>
+                    <v-card-text>
+                        You have already requested this passenger to exchange the seat.
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="seatRequestedByUserToggle = false">
+                            OK
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
+        <!--SEAT REQUESTED BY OTHER TOGGLE-->
+        <v-layout row justify-center>
+            <v-dialog v-model="seatRequestedByOtherToggle" max-width="290">
+                <v-card>
+                    <v-card-title class="headline">Selected Seat: {{currentSelectedSeat}}</v-card-title>
+                    <v-card-text>
+                        This passenger would like to exchange the seat.
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="green darken-1" flat="flat" @click="seatRequestedByOtherToggle = false">
+                            Confirm Seat Exchange
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-layout>
+
         <!-- SEAT DISPLAY -->
         <div class="seatWrapper">
             <v-layout class="seatSection" v-for="D in seats">
@@ -110,17 +223,18 @@
                         <div class="seats" v-for="seat in S">
                             <!-- <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"></i> -->
                             <div class="individualSeat" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"><span
-                                    class="seatID">{{seat.seatNumber}}</span></div>
+                                    class="seatID">{{seat.seatNumber}}</div>
                         </div>
-                    </v-card-title>
-                </v-flex>
-            </v-layout>
         </div>
+        </v-card-title>
+        </v-flex>
+        </v-layout>
+    </div>
 
-        <!-- FOOTER -->
-        <div class="footer">
-            <a>&copy SeatExchange - Vektor Tech</a>
-        </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <a>&copy SeatExchange - Vektor Tech</a>
+    </div>
     </div>
 </body>
 
