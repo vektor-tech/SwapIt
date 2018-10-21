@@ -6,7 +6,11 @@ new Vue({
             loginSuccess: false,
             loginToggle: true,
 
-            FORAPI: "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/seat-exchange-dqcnh/service/api/incoming_webhook/",
+            ticketNum: 0,
+            lastName: "",
+            userToken: "",
+
+            FORAPI: "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/seat-exchange-dqcnh/service/api/incoming_webhook",
 
             requestsCount: 2, //total requests received by the user
             userName: "FirstName LastName", //user's full name
@@ -321,32 +325,33 @@ new Vue({
         }
     },
     computed: {},
+    mounted: {},
     methods: {
         seatClicked(seat) {
             this.currentSelectedOffer = "";
             //for user's seat
-            if (((seat.seatStatus) == "B") && ((seat.seatNumber) === this.userSeat)) {
-                this.currentSelectedSeat = seat.seatNumber;
+            if (((seat.status) == "B") && ((seat.seat_number) === this.userSeat)) {
+                this.currentSelectedSeat = seat.seat_number;
                 this.userSeatToggle = true;
             }
             //for offered seat
-            else if ((seat.seatStatus) == "G") {
-                this.currentSelectedSeat = seat.seatNumber;
+            else if ((seat.status) == "G") {
+                this.currentSelectedSeat = seat.seat_number;
                 this.currentSelectedOfferToggle = true;
             }
             //for not available seat
-            else if ((seat.seatStatus) == "R") {
-                this.currentSelectedSeat = seat.seatNumber;
+            else if ((seat.status) == "R") {
+                this.currentSelectedSeat = seat.seat_number;
                 this.notAvailableSeatToggle = true;
             }
             //for seats requested by the user
-            else if ((seat.seatStatus) == "O") {
-                this.currentSelectedSeat = seat.seatNumber;
+            else if ((seat.status) == "O") {
+                this.currentSelectedSeat = seat.seat_number;
                 this.seatRequestedByUserToggle = true;
             }
             //for seats requested by others
-            else if ((seat.seatStatus) == "Y") {
-                this.currentSelectedSeat = seat.seatNumber;
+            else if ((seat.status) == "Y") {
+                this.currentSelectedSeat = seat.seat_number;
                 this.seatRequestedByOtherToggle = true;
             }
         },
@@ -361,7 +366,7 @@ new Vue({
             fetch(this.FORAPI + "/auth", {
                     method: "post",
                     body: JSON.stringify({
-                        ticket_num: this.ticketNum,
+                        ticket_num: parseInt(this.ticketNum),
                         last_name: this.lastName
                     }),
                     headers: {
@@ -370,12 +375,32 @@ new Vue({
                 })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     this.ticketNum = "";
                     this.lastName = "";
                     this.loginSuccess = true;
+                    this.userToken = data.token.$oid;
+                    this.getSeats();
                 })
                 .catch(err => console.error(err));
-        }
+        },
+
+        getSeats: function () {
+            console.log(this.seats);
+            fetch(this.FORAPI + "/seats", {
+                    method: "post",
+                    body: JSON.stringify({
+                        token: this.userToken
+                    }),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    this.seats = data;
+                    console.log(this.seats);
+                })
+                .catch(err => console.error(err));
+        },
     }
 
 });

@@ -22,8 +22,11 @@
                 <v-dialog v-model="loginToggle" max-width="290">
                     <v-card>
                         <v-card-title class="headline">LOGIN</v-card-title>
-                        <v-card-text>
-                            login area
+                        <v-card-text class="name-group">
+                            <input autofocus type="text" v-model="ticketNum" placeholder="Ticket Number">
+                            <input autofocus type="text" v-model="lastName" placeholder="Last Name">
+                            {{ticketNum}}
+                            {{lastName}}
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -62,7 +65,7 @@
                         <v-card class="card">
                             <v-card-title>
                                 <h4>Accept Offers</h4>
-                                <div v-if="offerToggle" class="toggleOn"><i @click="offerToggle=false" class="fas fa-toggle-on fa-2x"></i></div>
+                                <div v-if="offerToggle" class="toggleOn"><i @click="offerToggle=false;" class="fas fa-toggle-on fa-2x"></i></div>
                                 <div v-else class="toggleOff"><i @click="offerToggle=true" class="fas fa-toggle-off fa-2x"></i></div>
                             </v-card-title>
                         </v-card>
@@ -243,8 +246,8 @@
                         <v-card-title>
                             <div class="seats" v-for="seat in S">
                                 <!-- <i class="fas fa-square fa-2x" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"></i> -->
-                                <div class="individualSeat" :class="'class'+[seat.seatStatus]" @click="seatClicked(seat)"><span
-                                        class="seatID">{{seat.seatNumber}}</div>
+                                <div class="individualSeat" :class="'class'+[seat.status]" @click="seatClicked(seat)"><span
+                                        class="seatID">{{seat.seat_number}}</div>
                             </div>
             </div>
             </v-card-title>
